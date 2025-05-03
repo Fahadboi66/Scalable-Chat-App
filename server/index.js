@@ -40,8 +40,9 @@ app.use("/api/chat", chatRouter);
 app.use("/api/message", messageRouter);
 
 
-//Initialize Socket.IO service
+//Initialize Socket.IO and Message Service
 initSocketService(io);
+initMessageService(io);
 
 
 server.listen(port, () => {
