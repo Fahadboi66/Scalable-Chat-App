@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
+dotenv.config();
 import { startPersistenceService } from './services/persistenceService.js';
 
-dotenv.config();
 
 async function start() {
   await startPersistenceService();

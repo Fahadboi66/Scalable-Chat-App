@@ -1,9 +1,10 @@
-import { Kafka } from 'kafka-node';
+import kafka from 'kafka-node';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const KAFKA_BROKERS = process.env.KAFKA_BROKERS || 'kafka:9092';
-
-const kafkaClient = new Kafka.KafkaClient({ kafkaHost: KAFKA_BROKERS });
-const consumer = new Kafka.Consumer(
+console.log(process.env.KAFKA_BROKERS);
+const kafkaClient = new kafka.KafkaClient({ kafkaHost: process.env.KAFKA_BROKERS || "localhost:9092" });
+const consumer = new kafka.Consumer(
   kafkaClient,
   [{ topic: 'chat-messages', partition: 0 }],
   { groupId: 'persistence-service', autoCommit: true }

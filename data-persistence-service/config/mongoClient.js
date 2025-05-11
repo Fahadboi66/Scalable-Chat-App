@@ -1,14 +1,17 @@
-import { MongoClient } from 'mongodb';
-
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://mongo:27017/chat-app';
-
-const mongoClient = new MongoClient(MONGO_URL);
+import mongoose from "mongoose";
 
 async function connectMongo() {
-  await mongoClient.connect();
-  const db = mongoClient.db('chat_app');
-  console.log('Connected to MongoDB');
-  return db;
+  try{
+    const connect = await mongoose.connect(`${process.env.MONGO_URL}`);
+    if(!connect) {
+      console.log("Erorr connecting mongodb");
+      throw new Error("Erorr connecting mongodb")
+    }
+    console.log("Database Connected Successfully")
+  } catch(err) {
+    console.log("Error: ", err);
+    process.exit(1);
+  }
 }
 
 export { connectMongo };

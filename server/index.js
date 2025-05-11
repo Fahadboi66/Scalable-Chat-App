@@ -10,7 +10,7 @@ import authRouter from "./Routes/authRouter.js";
 import messageRouter from "./Routes/messageRouter.js";
 import chatRouter from "./Routes/chatRouter.js";
 import { initSocketService } from "./Services/socketService.js";
-
+import { initMessageService } from "./Services/messageService.js";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
